@@ -17,6 +17,17 @@ class UserCreate(BaseModel):
     role: UserRole = "TECHNICIAN"
 
 
+class UserUpdate(BaseModel):
+    full_name: str | None = Field(default=None, min_length=2, max_length=120)
+    email: str | None = Field(default=None, min_length=5, max_length=150)
+    password: str | None = Field(default=None, min_length=8, max_length=128)
+    role: UserRole | None = None
+
+
+class UserStatusUpdate(BaseModel):
+    is_active: bool
+
+
 class UserLogin(BaseModel):
     email: str
     password: str
